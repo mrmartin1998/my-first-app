@@ -1,0 +1,57 @@
+# React App Testing Workflow
+# This workflow tests our React app automatically on every Pull Request
+
+name: Test React App
+
+# WHEN should this workflow run?
+on:
+  pull_request:
+    branches: [ main, master ]  # Run when someone creates a PR to main/master
+  push:
+    branches: [ main, master ]  # Also run when code is pushed directly to main/master
+
+# WHAT should this workflow do?
+jobs:
+  test:
+    # What computer should GitHub use to run this?
+    runs-on: ubuntu-latest  # Use a Linux computer (free and fast!)
+    
+    # What steps should this job follow?
+    steps:
+    
+    # STEP 1: Get a copy of our code
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      # This downloads our repository code to GitHub's computer
+      
+    # STEP 2: Install Node.js (needed to run React apps)
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'  # Use Node.js version 18 (same as your computer!)
+        cache: 'npm'       # Cache npm packages to make it faster next time
+      
+    # STEP 3: Install all the packages our app needs
+    - name: 📦 Install dependencies
+      run: npm ci
+      # 'npm ci' is like 'npm install' but faster and more reliable for automation
+      
+    # STEP 4: Run the tests to make sure everything works
+    - name: 🧪 Run tests
+      run: npm test -- --coverage --watchAll=false
+      # --coverage = show how much of our code is tested
+      # --watchAll=false = don't wait for file changes (run once and finish)
+      
+    # STEP 5: Try to build the app for production
+    - name: 🏗️ Build app
+      run: npm run build
+      # This creates the optimized version that would go to production
+      
+    # STEP 6: Upload test results (so we can see them later)
+    - name: 📊 Upload coverage reports
+      uses: actions/upload-artifact@v4
+      if: always()  # Upload even if tests fail
+      with:
+        name: coverage-report
+        path: coverage/
+        retention-days: 30  # Keep the reports for 30 days
