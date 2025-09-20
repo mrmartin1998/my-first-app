@@ -1,0 +1,36 @@
+# My First GitHub Action - Hello World
+# This workflow runs when someone creates or updates a Pull Request
+
+name: Hello World Workflow
+
+# When should this workflow run?
+on:
+  pull_request:
+    branches: [ main, master ]
+
+# What jobs should this workflow run?
+jobs:
+  say-hello:
+    # What operating system should this run on?
+    runs-on: ubuntu-latest
+    
+    # What steps should this job do?
+    steps:
+    # Step 1: Get a copy of the code
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    # Step 2: Say hello
+    - name: Say Hello
+      run: |
+        echo "🎉 Hello from GitHub Actions!"
+        echo "🚀 Someone just created or updated a Pull Request!"
+        echo "⚡ This is my first automation workflow!"
+        echo "🔴 Gotta automate 'em all!"
+        
+    # Step 3: Show some info about the PR
+    - name: Show PR Info
+      run: |
+        echo "PR Title: ${{ github.event.pull_request.title }}"
+        echo "PR Author: ${{ github.event.pull_request.user.login }}"
+        echo "Branch: ${{ github.head_ref }}"
