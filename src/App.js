@@ -1,4 +1,6 @@
+
 import './App.css';
+import MyFirstComponent from './MyFirstComponent';
 
 function App() {
   return (
@@ -8,6 +10,7 @@ function App() {
         <p>Welcome to my first React app!</p>
         <p>Built with Create React App and GitHub Copilot 🚀</p>
         <p>This is my journey learning React step by step!</p>
+        <MyFirstComponent />
       </header>
     </div>
   );
