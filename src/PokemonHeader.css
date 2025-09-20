@@ -1,0 +1,164 @@
+/* PokemonHeader.css */
+.pokemon-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.pokemon-header-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.pokeball-container {
+  margin-bottom: 1rem;
+}
+
+.pokeball {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(180deg, #ff0000 50%, #ffffff 50%);
+  border-radius: 50%;
+  border: 4px solid #333;
+  margin: 0 auto;
+  position: relative;
+  display: inline-block;
+}
+
+.pokeball::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 3px solid #333;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pokeball::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: #333;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/* Bounce Animation for Pokeball */
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.welcome-message {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  to {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.pokemon-emojis {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pokemon-emoji {
+  font-size: 2rem;
+  display: inline-block;
+}
+
+/* Float Animation for Pokemon Emojis */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.float.delay-1 {
+  animation-delay: -1s;
+}
+
+.float.delay-2 {
+  animation-delay: -2s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pokemon-header {
+    padding: 1.5rem 1rem;
+  }
+  
+  .welcome-message {
+    font-size: 2rem;
+  }
+  
+  .pokeball {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .pokeball::before {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .pokemon-emoji {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-message {
+    font-size: 1.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+}
