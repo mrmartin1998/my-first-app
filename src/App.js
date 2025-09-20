@@ -2,6 +2,7 @@
 import './App.css';
 import MyFirstComponent from './MyFirstComponent';
 import PokemonHeader from './PokemonHeader';
+import PokemonFooter from './PokemonFooter';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <p>This is my journey learning React step by step!</p>
         <MyFirstComponent />
       </main>
+      <PokemonFooter />
     </div>
   );
 }
